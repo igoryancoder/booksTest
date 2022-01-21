@@ -1,12 +1,19 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {View, StyleSheet} from 'react-native';
+import {Dimensions} from 'react-native';
 import {useSelector} from 'react-redux';
 import {defaultTheme} from '../constants';
 import {reducerT} from '../types';
 
+const height: number = Dimensions.get('window').height / 2;
 const Modal = styled.Modal``;
-const ActivityIndicator = styled.ActivityIndicator``;
+const View = styled.View`
+  width: 100%;
+  height: 100%;
+`;
+const ActivityIndicator = styled.ActivityIndicator`
+  margin-top: ${height}px;
+`;
 
 export const Spinner = () => {
   const selector = (store: reducerT) => store.books.isLoading;
@@ -17,7 +24,7 @@ export const Spinner = () => {
       transparent
       animationType="none"
       visible={isLoading}>
-      <View style={styles.container}>
+      <View>
         <ActivityIndicator
           size="large"
           color={defaultTheme.primary}
@@ -27,12 +34,3 @@ export const Spinner = () => {
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

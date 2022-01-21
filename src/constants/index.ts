@@ -12,4 +12,4 @@ export const defaultTheme: defaultThemeT = {
   textLight: '#000',
 };
 
-export const DEEP_LINKING_URL: string = 'books://book/id=';
+export const DEEP_LINKING_URL: string = 'books://book/';

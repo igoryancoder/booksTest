@@ -23,7 +23,7 @@ export default class Request {
       delete options.body;
     }
 
-    return fetch(url, options).then(response => {
+    return await fetch(url, options).then(response => {
       return response.json().then(payload => {
         const optionalErrorMessage = payload?.statusMessage;
 

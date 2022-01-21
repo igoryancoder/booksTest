@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {Platform} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import {prop} from 'styled-tools';
@@ -37,9 +38,10 @@ export const BooksItem = ({id}: ID) => {
 
   useEffect(() => {
     if (id) {
-      dispatch(bookByIdGet(id));
+      const identifier: number = +id.split('=')[1];
+      dispatch(bookByIdGet(identifier));
     }
-  });
+  }, [bookByIdGet]);
 
   function onSharePress() {
     const options = {
@@ -49,10 +51,10 @@ export const BooksItem = ({id}: ID) => {
     };
     Share.open(options)
       .then(res => {
-        console.log(res);
+        console.info(res);
       })
       .catch(err => {
-        err && console.log(err);
+        err && console.error(err);
       });
   }
 
