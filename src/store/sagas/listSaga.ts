@@ -30,7 +30,7 @@ function* getListSaga() {
     yield put(booksListSet(response.books));
     yield put(pagesCounterSet());
   } catch (e) {
-    console.log('Err', e);
+    console.error('Err', e);
   } finally {
     yield put(loadingSet(false));
   }
@@ -39,14 +39,15 @@ function* getListSaga() {
 function* getBookSaga({payload}: actionT) {
   try {
     yield put(loadingSet(true));
+
     const response: ResponseGenerator = yield call(Requests.ITEMS_BY_ID_GET, {
       id: payload,
     });
 
-    yield put(bookDataSet(response.book));
+    yield put(bookDataSet(response?.book));
     navigate('ItemScreen');
   } catch (e) {
-    console.log('Err', e);
+    console.error('Err', e);
   } finally {
     yield put(loadingSet(false));
   }

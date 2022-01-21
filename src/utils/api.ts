@@ -3,7 +3,7 @@
 
 import Request from '../utils/request';
 import {ENDPOINTS_LIST, BASE_URL} from '../constants';
-import {ID, postValuesT, bookT, bookReducerT} from '../types';
+import {postValuesT, bookT, bookReducerT} from '../types';
 
 export const Requests = {
   ITEMS_LIST_POST: ({values}: {values: postValuesT}): Promise<bookReducerT[]> =>
